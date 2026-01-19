@@ -3,7 +3,49 @@ return {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
-    opts = require "configs.copilot",
+    opts = {
+      panel = {
+        enabled = true,
+        auto_refresh = false,
+        keymap = {
+          jump_prev = "[[",
+          jump_next = "]]",
+          accept = "<CR>",
+          refresh = "gr",
+          open = "<M-CR>",
+        },
+        layout = {
+          position = "bottom", -- | top | left | right
+          ratio = 0.4,
+        },
+      },
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        debounce = 75,
+        keymap = {
+          accept = "<C-l>", -- Control + L to accept (common convention)
+          accept_word = false,
+          accept_line = false,
+          next = "<M-]>",
+          prev = "<M-[>",
+          dismiss = "<C-]>",
+        },
+      },
+      filetypes = {
+        yaml = false,
+        markdown = false,
+        help = false,
+        gitcommit = false,
+        gitrebase = false,
+        hgcommit = false,
+        svn = false,
+        cvs = false,
+        ["."] = false,
+      },
+      copilot_node_command = "node", -- Node.js version must be > 18.x
+      server_opts_overrides = {},
+    },
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
@@ -26,12 +68,12 @@ return {
       "CopilotChatAgents",
     },
     keys = {
-      { "<leader>cc", "<cmd>CopilotChatToggle<cr>", desc = "Copilot Chat" },
-      { "<leader>cq", "<cmd>CopilotChatQuick<cr>", desc = "Copilot Chat Quick" },
-      { "<leader>ce", "<cmd>CopilotChatExplain<cr>", desc = "Copilot Explain Code" },
-      { "<leader>ct", "<cmd>CopilotChatTests<cr>", desc = "Copilot Generate Tests" },
-      { "<leader>cf", "<cmd>CopilotChatFix<cr>", desc = "Copilot Fix Code" },
-      { "<leader>cr", "<cmd>CopilotChatReview<cr>", desc = "Copilot Review Code" },
+      { "<leader>aa", "<cmd>CopilotChatToggle<cr>", desc = "AI: Toggle chat" },
+      { "<leader>aq", "<cmd>CopilotChatQuick<cr>", desc = "AI: Quick chat" },
+      { "<leader>ae", "<cmd>CopilotChatExplain<cr>", desc = "AI: Explain code" },
+      { "<leader>at", "<cmd>CopilotChatTests<cr>", desc = "AI: Generate tests" },
+      { "<leader>af", "<cmd>CopilotChatFix<cr>", desc = "AI: Fix code" },
+      { "<leader>ar", "<cmd>CopilotChatReview<cr>", desc = "AI: Review code" },
     },
     opts = {
       debug = false, -- Enable debug logging
